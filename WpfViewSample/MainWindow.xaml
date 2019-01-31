@@ -6,7 +6,126 @@
         xmlns:local="clr-namespace:WpfViewSample"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+    <Grid Background='SteelBlue'>
+				
+				<Grid>
+						<Grid.ColumnDefinitions>
+								<ColumnDefinition />
+								<ColumnDefinition />
+								<ColumnDefinition />
+								<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+								<RowDefinition Height='10*'/>
+								<RowDefinition Height='25*'/>
+								<RowDefinition Height='25*'/>
+								<RowDefinition Height='25*'/>
+								<RowDefinition Height='25*' />
+						</Grid.RowDefinitions>
+						<!--Grids Should contain your object groups for Flexibility-->
+						
+						<Grid Grid.ColumnSpan='4'>
+								<TextBlock Text='View Demonstrations'
+													 FontSize='24'
+													 HorizontalAlignment='Center' 
+													 Foreground='White'/>
+						</Grid>
+						
+						<Grid Grid.Row='1' Grid.RowSpan='2' Margin='4'>
+								<Grid.RowDefinitions>
+										<RowDefinition Height='15*'/>
+										<RowDefinition Height='85*' />
+								</Grid.RowDefinitions>
+								<TextBlock Text='List View with Template'
+													 Foreground='White'
+													 VerticalAlignment='Bottom'/>
+								<!--The list view is Dumb so it needs a Template to know what to show.-->
+								<ListView Grid.Row='1' x:Name='ListViewTemplate' SelectionChanged='ListViewTemplate_SelectionChanged'>
+										<ListView.ItemTemplate>
+												<ItemContainerTemplate>
+														<!--Grids Hold your object groups-->
+														<Grid>
+																<Grid.ColumnDefinitions>
+																		<ColumnDefinition />
+																		<ColumnDefinition />
+																</Grid.ColumnDefinitions>
+																<TextBlock Text='{Binding FirstName}' />
+																<TextBlock Text='{Binding LastName}' Grid.Column='1'/>
+														</Grid>
+												</ItemContainerTemplate>
+										</ListView.ItemTemplate>
+								</ListView>
+						</Grid>
+						
+						<Grid Grid.Row='3'
+									Grid.RowSpan='2' Margin='4'>
+								<Grid.RowDefinitions>
+										<RowDefinition Height='15*' />
+										<RowDefinition Height='85*' />
+								</Grid.RowDefinitions>
+								<TextBlock Text='List View No Template'
+													 Foreground='White'
+													 VerticalAlignment='Bottom' />
+								<ListView Grid.Row='1' x:Name='ListViewNoTemplate' SelectionChanged='ListViewNoTemplate_SelectionChanged'>
+										<!--No Template-->
+								</ListView>
+						</Grid>
+						
+						<Grid Grid.Row='1' Grid.Column='1' Grid.ColumnSpan='2' Grid.RowSpan='4' Margin='4'>
+								<Grid.RowDefinitions>
+										<RowDefinition Height='5*'/>
+										<RowDefinition Height='85*'/>
+								</Grid.RowDefinitions>
+								<TextBlock Text='DataGrid Is Smart and Easy'
+													 Foreground='White' HorizontalAlignment='Center' VerticalAlignment='Bottom'/>
+								<!--DataGrids are smart and make life easy Although they are not pretty-->
+								<DataGrid x:Name='DataGridView' Grid.Row='1' SelectionChanged='DataGridView_SelectionChanged'/>
+						</Grid>
+						
+						<Grid Grid.Column='4' Margin='4' Grid.Row='1'>
+								<Grid.RowDefinitions>
+										<RowDefinition Height='85*'/>
+										<RowDefinition Height='30*'/>
+								</Grid.RowDefinitions>
+								<TextBlock Text='Combo Boxes Need templates just Like a ListView'
+													 TextWrapping='Wrap'
+													 Foreground='White'
+													 VerticalAlignment='Bottom' />
+								<!--ComboBoxes Need templates-->
+								<ComboBox x:Name='ComboxView'
+													Grid.Row='1' SelectionChanged='ComboxView_SelectionChanged'>
+										<ComboBox.ItemTemplate>
+												<ItemContainerTemplate>
+														<StackPanel Orientation='Horizontal'>
+																<TextBlock Text='{Binding FirstName}' />
+																<TextBlock Text='{Binding Number}' Margin='2,0,0,0'/>
+														</StackPanel>
+												</ItemContainerTemplate>
+										</ComboBox.ItemTemplate>
+								</ComboBox>
+						</Grid>
+						<Grid Grid.Row='2' Grid.Column='3' Grid.RowSpan='3' Margin='4'>
+								<Grid.RowDefinitions>
+										<RowDefinition Height='15*'/>
+										<RowDefinition Height='85*'/>
+								</Grid.RowDefinitions>
+								<TextBlock Text='Select any item and it will appear here'
+													 Foreground='White'
+													 TextWrapping='Wrap'
+													 VerticalAlignment='Bottom' />
+								<StackPanel x:Name='Stacker' Grid.Row='1' Background='WhiteSmoke'>
+										<TextBlock Text='First Name:' />
+										<TextBlock x:Name='FirstNameText' />
+										<TextBlock Text='Last Name: ' />
+										<TextBlock x:Name='LastNameText'/>
+										<TextBlock Text='Address: ' />
+										<TextBlock x:Name='AddressText'
+															 TextWrapping='Wrap' />
+										<TextBlock Text='Number: ' />
+										<TextBlock x:Name='NumberText'/>
+								</StackPanel>
+						</Grid>
+				</Grid>
+				
     </Grid>
 </Window>
